@@ -6,7 +6,7 @@ looper pedals (see also: https://en.wikipedia.org/wiki/Looper_pedal) over USB.
 Unfortunately they are officially only supported by a Windows tool.
 To be able to use them with Linux, I analyzed and replicated their USB protocol
 in this small script. Though I only tested it with Linux, it should work on all
-platforms supported by pyusb (e.g. MacOSX, *BSD).
+platforms supported by pyusb (e.g. MacOSX, \*BSD).
 
 I primarily wrote the tool to get support for my "Harley Benton Mini Looper",
 but I found that several other brands use the same OEM product; even the
@@ -33,12 +33,13 @@ Call it without any parameters to start the graphical interface (if tkinter is a
 
 For command line usage:
 
- $ loopertrx.py rx audio.wav
- Receiving..... Done.
+```bash
+$ loopertrx.py rx audio.wav
+Receiving..... Done.
 
- $ loopertrx.py tx audio.wav
- Transmitting..... Done.
-
+$ loopertrx.py tx audio.wav
+Transmitting..... Done.
+```
 
 Data format
 -----------
@@ -48,8 +49,9 @@ sample rate of 48000 Hz.
 To convert arbitrary audio files to this format, the swiss army knife of sound
 processing (sox) can be used:
 
- $ sox input.mp3 -c1 -r 48000 -b 24 -t wavpcm output.wav
-
+```bash
+$ sox input.mp3 -c1 -r 48000 -b 24 -t wavpcm output.wav
+```
 
 External dependencies
 ---------------------
@@ -66,10 +68,37 @@ Linux notes
 To allow unprivileged users access to the devices, a udev rule can be created.
 Create the file /etc/udev/rules.d/99-looperpedal.rules with the following content:
 
+```bash
  SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="572a", GROUP="plugdev", MODE="0660"
+```
 
 Users in the 'plugdev' group will then be allowed to send/receive data.
 
+macOS Installation notes
+-----------
+
+Getting the dependencies installed for macOS, try the following. This worked for me using macOS 10.15 Catalina.
+
+Install or upgrade python3 via [homebrew](https://brew.sh):
+
+```bash
+brew install python # or
+brew upgrade python
+```
+
+Install [pyusb](https://walac.github.io/pyusb/) via [pip](https://pip.pypa.io):
+
+```bash
+pip3 install pyusb
+```
+
+Install [libusb](https://libusb.info) via [homebrew](https://brew.sh):
+
+```bash
+brew install libusb
+```
+
+Then try running the commands listed in "Usage" above.
 
 Current limitations
 -------------------
