@@ -25,6 +25,38 @@ Note: The Harley Benton looper has the USB ID 0483:572a, so the software is
 looking for these devices. Please let me know if other devices are using
 different IDs.
 
+Installation
+------------
+
+1. Download the contents of this repository.
+2. Run the installation script:
+
+```bash
+python setup.py install
+```
+
+### macOS Notes ###
+
+The script might not install all dependencies correctly on macOS. If that is the case, try installing them manually. This worked for me using macOS 10.15 Catalina.
+
+Install or upgrade python3 via [homebrew](https://brew.sh):
+
+```bash
+brew install python # or
+brew upgrade python
+```
+
+Install [pyusb](https://walac.github.io/pyusb/) via [pip](https://pip.pypa.io):
+
+```bash
+pip3 install pyusb
+```
+
+Install [libusb](https://libusb.info) via [homebrew](https://brew.sh):
+
+```bash
+brew install libusb
+```
 
 Usage
 -----
@@ -73,32 +105,6 @@ Create the file /etc/udev/rules.d/99-looperpedal.rules with the following conten
 ```
 
 Users in the 'plugdev' group will then be allowed to send/receive data.
-
-macOS Installation notes
------------
-
-Getting the dependencies installed for macOS, try the following. This worked for me using macOS 10.15 Catalina.
-
-Install or upgrade python3 via [homebrew](https://brew.sh):
-
-```bash
-brew install python # or
-brew upgrade python
-```
-
-Install [pyusb](https://walac.github.io/pyusb/) via [pip](https://pip.pypa.io):
-
-```bash
-pip3 install pyusb
-```
-
-Install [libusb](https://libusb.info) via [homebrew](https://brew.sh):
-
-```bash
-brew install libusb
-```
-
-Then try running the commands listed in "Usage" above.
 
 Current limitations
 -------------------
